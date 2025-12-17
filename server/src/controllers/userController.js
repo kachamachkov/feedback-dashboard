@@ -1,10 +1,21 @@
 const router = require('express').Router();
 
-router.post('/register', (req, res) => {
-    console.log(req.body);
+const userService = require('../services/userService');
 
+router.post('/register', async (req, res) => {
+    const userData = req.body;
 
-    res.send({ ok: false })
+    const {
+        _id,
+        email,
+        token
+    } = await userService.register(userData);
+
+    res.json({
+        _id,
+        email,
+        accessToken: token
+    });
 });
 
 module.exports = router;
