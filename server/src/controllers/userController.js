@@ -14,4 +14,9 @@ router.post('/login', async (req, res) => {
     res.json(result);
 })
 
+router.get('/logout', async (req, res) => {
+    // todo: invalidate token for current user.
+    res.json({ok: true})
+})
+
 module.exports = router;
