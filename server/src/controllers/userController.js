@@ -4,18 +4,14 @@ const userService = require('../services/userService');
 
 router.post('/register', async (req, res) => {
     const userData = req.body;
-
-    const {
-        _id,
-        email,
-        token
-    } = await userService.register(userData);
-
-    res.json({
-        _id,
-        email,
-        accessToken: token
-    });
+    const result = await userService.register(userData);
+    res.json(result);
 });
+
+router.post('/login', async (req, res) => {
+    const userData = req.body;
+    const result = await userService.login(userData);
+    res.json(result);
+})
 
 module.exports = router;
